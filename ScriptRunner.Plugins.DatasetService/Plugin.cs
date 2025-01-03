@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using ScriptRunner.Plugins.Attributes;
 using ScriptRunner.Plugins.DatasetService.Interfaces;
+using ScriptRunner.Plugins.Models;
 using ScriptRunner.Plugins.Utilities;
 
 namespace ScriptRunner.Plugins.DatasetService;
@@ -33,13 +34,11 @@ public class Plugin : BaseAsyncServicePlugin
     /// Asynchronously initializes the plugin using the provided configuration.
     /// </summary>
     /// <param name="configuration">A dictionary containing configuration key-value pairs for the plugin.</param>
-    public override async Task InitializeAsync(IDictionary<string, object> configuration)
+    public override async Task InitializeAsync(IEnumerable<PluginSettingDefinition> configuration)
     {
-        // Simulate async initialization (e.g., loading settings or validating configurations)
-        await Task.Delay(100);
-        Console.WriteLine(configuration.TryGetValue("DatasetServiceKey", out var datasetServiceKeyValue)
-            ? $"DatasetServiceKey value: {datasetServiceKeyValue}"
-            : "DatasetServiceKey not found in configuration.");
+        PluginSettingsHelper.DisplayValues(configuration);
+        
+        await Task.CompletedTask;
     }
     
     /// <summary>
