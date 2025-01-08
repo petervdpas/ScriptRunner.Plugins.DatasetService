@@ -51,23 +51,24 @@ string jsonSchema = @"
 [
     {
         ""Name"": ""Genre"",
-        ""Type"": ""string"",
-        ""AccessorType"": ""init"",
-        ""AccessorVisibility"": ""public""
+        ""TypeName"": ""string"",
+        ""ControlType"": ""groupable"",
+        ""DataSetControls"": { ""IsGroupable"": true }
     },
     {
         ""Name"": ""Rating"",
-        ""Type"": ""double"",
-        ""AccessorType"": ""init"",
-        ""AccessorVisibility"": ""public""
+        ""TypeName"": ""number"",
+        ""ControlType"": ""aggregator"",
+        ""DataSetControls"": { ""IsAggregator"": true }
     },
     {
         ""Name"": ""Year"",
-        ""Type"": ""int"",
-        ""AccessorType"": ""init"",
-        ""AccessorVisibility"": ""public""
+        ""TypeName"": ""number"",
+        ""ControlType"": ""filterable"",
+        ""DataSetControls"": { ""Filterable"": true }
     }
 ]";
+
 
 // Initialize DatasetService
 var datasetService = new DatasetService();

@@ -15,7 +15,7 @@ namespace ScriptRunner.Plugins.DatasetService;
 public class DatasetService : IDatasetService
 {
     private DataTable? _dataTable;
-    private List<PropertyDefinition>? _schema;
+    private List<DynamicPropertyMetadata>? _schema;
 
     /// <summary>
     ///     Configures the dataset service with a data table and JSON schema.
@@ -237,11 +237,16 @@ public class DatasetService : IDatasetService
     {
         EnsureSetup();
 
+        // Group data and materialize into a list to avoid multiple enumeration
         var grouped = _dataTable!.AsEnumerable()
             .GroupBy(row => row[field])
-            .Select(group => new { Value = group.Key, Count = group.Count() });
+            .Select(group => new { Value = group.Key, Count = group.Count() })
+            .ToList(); // Materialize to avoid multiple enumeration
 
+        // Find the maximum count
         var maxCount = grouped.Max(g => g.Count);
+
+        // Select the modes (values with the maximum count)
         return grouped.Where(g => g.Count == maxCount).Select(g => g.Value).ToList();
     }
 
@@ -338,19 +343,19 @@ public class DatasetService : IDatasetService
     }
 
     /// <summary>
-    ///     Deserializes the JSON schema into a list of <see cref="PropertyDefinition" /> objects.
+    ///     Deserializes the JSON schema into a list of <see cref="DynamicPropertyMetadata" /> objects.
     /// </summary>
     /// <param name="jsonSchema">The JSON schema to deserialize.</param>
-    /// <returns>A list of <see cref="PropertyDefinition" /> objects.</returns>
+    /// <returns>A list of <see cref="DynamicPropertyMetadata" /> objects.</returns>
     /// <exception cref="ArgumentException">Thrown if the JSON schema is invalid, empty, or cannot be parsed.</exception>
-    private static List<PropertyDefinition> DeserializeSchema(string jsonSchema)
+    private static List<DynamicPropertyMetadata> DeserializeSchema(string jsonSchema)
     {
         if (string.IsNullOrWhiteSpace(jsonSchema))
             throw new ArgumentException("JSON schema cannot be null or empty.", nameof(jsonSchema));
 
         try
         {
-            var schema = JsonSerializer.Deserialize<List<PropertyDefinition>>(jsonSchema);
+            var schema = JsonSerializer.Deserialize<List<DynamicPropertyMetadata>>(jsonSchema);
 
             if (schema == null || schema.Count == 0)
                 throw new ArgumentException("The provided JSON schema is invalid or empty.");
