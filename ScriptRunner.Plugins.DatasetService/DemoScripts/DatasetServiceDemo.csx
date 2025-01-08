@@ -1,6 +1,6 @@
 /*
 {
-    "TaskCategory": "Dynamic",
+    "TaskCategory": "Plugins",
     "TaskName": "DatasetServiceEnhancedDemo",
     "TaskDetail": "A demo script showcasing DatasetService with advanced statistical operations and a movie ratings dataset"
 }
@@ -49,9 +49,24 @@ var moviesTable = db.ExecuteQuery("SELECT * FROM Movies");
 // Define the JSON schema for the DatasetService
 string jsonSchema = @"
 [
-    { ""Name"": ""Genre"", ""DataSetControls"": { ""IsGroupable"": true } },
-    { ""Name"": ""Rating"", ""DataSetControls"": { ""IsAggregator"": true } },
-    { ""Name"": ""Year"", ""DataSetControls"": { ""Filterable"": true } }
+    {
+        ""Name"": ""Genre"",
+        ""Type"": ""string"",
+        ""AccessorType"": ""init"",
+        ""AccessorVisibility"": ""public""
+    },
+    {
+        ""Name"": ""Rating"",
+        ""Type"": ""double"",
+        ""AccessorType"": ""init"",
+        ""AccessorVisibility"": ""public""
+    },
+    {
+        ""Name"": ""Year"",
+        ""Type"": ""int"",
+        ""AccessorType"": ""init"",
+        ""AccessorVisibility"": ""public""
+    }
 ]";
 
 // Initialize DatasetService
