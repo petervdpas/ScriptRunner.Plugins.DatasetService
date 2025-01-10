@@ -2,7 +2,8 @@
 {
     "TaskCategory": "Plugins",
     "TaskName": "DatasetServiceEnhancedDemo",
-    "TaskDetail": "A demo script showcasing DatasetService with advanced statistical operations and a movie ratings dataset"
+    "TaskDetail": "A demo script showcasing DatasetService with advanced statistical operations and a movie ratings dataset",
+    "RequiredPlugins": ["DatasetService"]
 }
 */
 
