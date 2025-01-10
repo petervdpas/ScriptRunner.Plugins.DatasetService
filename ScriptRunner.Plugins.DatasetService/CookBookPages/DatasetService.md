@@ -43,7 +43,8 @@ making it ideal for preparing data for visualization, analysis, or reporting.
    - **IsGroupable**: Enables grouping.
    - **IsAggregator**: Enables aggregation.
    - **Filterable**: Allows filtering.
-
+3. **Initialize the plugin**:
+4. 
 Example schema:
 ```json
 [
@@ -68,7 +69,6 @@ Example schema:
 ]
 ```
 
-3. **Initialize the plugin**:
 ```csharp
 var datasetService = new DatasetService();
 datasetService.Setup(dataTable, jsonSchema);
@@ -79,7 +79,7 @@ datasetService.Setup(dataTable, jsonSchema);
 ## Usage Examples
 
 ### 1. Grouping Data
-Group data by a specific field, such as `Genre`:
+Group data by a specific field, such as **Genre**:
 ```csharp
 var groupedData = datasetService.GroupBy("Genre");
 ```
