@@ -92,7 +92,7 @@ public class DatasetService : IDatasetService
         return (labels, values);
     }
 
-        /// <summary>
+    /// <summary>
     ///     Groups the dataset by the specified field.
     /// </summary>
     /// <param name="groupByField">The field name to group by.</param>
@@ -182,9 +182,9 @@ public class DatasetService : IDatasetService
 
         return filteredRows.CopyToDataTable();
     }
-    
+
     /// <summary>
-    /// Calculates the standard deviation of a numerical field in the dataset.
+    ///     Calculates the standard deviation of a numerical field in the dataset.
     /// </summary>
     /// <param name="field">The name of the numerical field to calculate the standard deviation for.</param>
     /// <returns>The standard deviation of the field values.</returns>
@@ -203,12 +203,12 @@ public class DatasetService : IDatasetService
     }
 
     /// <summary>
-    /// Calculates the median of a numerical field in the dataset.
+    ///     Calculates the median of a numerical field in the dataset.
     /// </summary>
     /// <param name="field">The name of the numerical field to calculate the median for.</param>
     /// <returns>The median value of the field.</returns>
     /// <exception cref="InvalidOperationException">
-    /// Thrown if the dataset has not been properly set up or if the dataset is empty.
+    ///     Thrown if the dataset has not been properly set up or if the dataset is empty.
     /// </exception>
     public double Median(string field)
     {
@@ -228,7 +228,7 @@ public class DatasetService : IDatasetService
     }
 
     /// <summary>
-    /// Finds the mode(s) of a field in the dataset.
+    ///     Finds the mode(s) of a field in the dataset.
     /// </summary>
     /// <param name="field">The name of the field to calculate the mode for.</param>
     /// <returns>A list of the most frequent value(s) in the field.</returns>
@@ -251,7 +251,7 @@ public class DatasetService : IDatasetService
     }
 
     /// <summary>
-    /// Calculates the nth percentile of a numerical field in the dataset.
+    ///     Calculates the nth percentile of a numerical field in the dataset.
     /// </summary>
     /// <param name="field">The name of the numerical field to calculate the percentile for.</param>
     /// <param name="percentile">The percentile to calculate (0-100).</param>
@@ -270,7 +270,7 @@ public class DatasetService : IDatasetService
             .OrderBy(v => v)
             .ToArray();
 
-        var rank = (percentile / 100) * (values.Length - 1);
+        var rank = percentile / 100 * (values.Length - 1);
         var lowerIndex = (int)Math.Floor(rank);
         var upperIndex = (int)Math.Ceiling(rank);
 
@@ -281,13 +281,13 @@ public class DatasetService : IDatasetService
     }
 
     /// <summary>
-    /// Calculates the Pearson correlation coefficient between two numerical fields in the dataset.
+    ///     Calculates the Pearson correlation coefficient between two numerical fields in the dataset.
     /// </summary>
     /// <param name="fieldX">The name of the first numerical field.</param>
     /// <param name="fieldY">The name of the second numerical field.</param>
     /// <returns>The Pearson correlation coefficient between the two fields.</returns>
     /// <exception cref="InvalidOperationException">
-    /// Thrown if the dataset has not been properly set up or if the fields have different lengths.
+    ///     Thrown if the dataset has not been properly set up or if the fields have different lengths.
     /// </exception>
     public double Correlation(string fieldX, string fieldY)
     {
@@ -310,10 +310,10 @@ public class DatasetService : IDatasetService
     }
 
     /// <summary>
-    /// Normalizes a numerical field in the dataset to a range of 0 to 1.
+    ///     Normalizes a numerical field in the dataset to a range of 0 to 1.
     /// </summary>
     /// <param name="field">The name of the numerical field to normalize.</param>
-    /// <returns>A new <see cref="DataTable"/> with the normalized field values.</returns>
+    /// <returns>A new <see cref="DataTable" /> with the normalized field values.</returns>
     /// <exception cref="InvalidOperationException">Thrown if the dataset has not been properly set up.</exception>
     public DataTable Normalize(string field)
     {
@@ -331,7 +331,7 @@ public class DatasetService : IDatasetService
 
         return normalizedTable;
     }
-        
+
     /// <summary>
     ///     Ensures that the service has been properly set up with a dataset and schema.
     /// </summary>

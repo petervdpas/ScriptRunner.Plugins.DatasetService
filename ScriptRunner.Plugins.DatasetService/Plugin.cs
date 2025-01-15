@@ -31,7 +31,7 @@ public class Plugin : BaseAsyncServicePlugin
     public override string Name => "DatasetService";
 
     /// <summary>
-    /// Asynchronously initializes the plugin using the provided configuration.
+    ///     Asynchronously initializes the plugin using the provided configuration.
     /// </summary>
     /// <param name="configuration">A dictionary containing configuration key-value pairs for the plugin.</param>
     public override async Task InitializeAsync(IEnumerable<PluginSettingDefinition> configuration)
@@ -41,12 +41,12 @@ public class Plugin : BaseAsyncServicePlugin
 
         // Optionally display the settings
         PluginSettingsHelper.DisplayStoredSettings();
-        
+
         await Task.CompletedTask;
     }
-    
+
     /// <summary>
-    /// Asynchronously registers the plugin's services into the application's dependency injection container.
+    ///     Asynchronously registers the plugin's services into the application's dependency injection container.
     /// </summary>
     /// <param name="services">The service collection to register services into.</param>
     public override async Task RegisterServicesAsync(IServiceCollection services)
@@ -55,16 +55,16 @@ public class Plugin : BaseAsyncServicePlugin
         await Task.Delay(50);
         services.AddSingleton<IDatasetService, DatasetService>();
     }
-    
+
     /// <summary>
-    /// Asynchronously executes the plugin's main functionality.
+    ///     Asynchronously executes the plugin's main functionality.
     /// </summary>
     public override async Task ExecuteAsync()
     {
         // Example execution logic
         await Task.Delay(50);
-        
-        var storedSetting = PluginSettingsHelper.RetrieveSetting<string>("PluginName");
+
+        var storedSetting = PluginSettingsHelper.RetrieveSetting<string>("PluginName", true);
         Console.WriteLine($"Retrieved PluginName: {storedSetting}");
     }
 }

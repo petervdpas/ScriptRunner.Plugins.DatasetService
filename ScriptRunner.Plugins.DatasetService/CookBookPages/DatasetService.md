@@ -15,7 +15,7 @@ toc-own-page: true
 ## Purpose
 
 The **DatasetService Plugin** provides robust functionality for processing datasets with schema-based configurations.
-Its capabilities include grouping, filtering, aggregation, and statistical analysis, 
+Its capabilities include grouping, filtering, aggregation, and statistical analysis,
 making it ideal for preparing data for visualization, analysis, or reporting.
 
 ---
@@ -23,16 +23,16 @@ making it ideal for preparing data for visualization, analysis, or reporting.
 ## Features
 
 - **Schema-based dataset control**:
-  - Define dataset structure using JSON schemas.
+    - Define dataset structure using JSON schemas.
 - **Data operations**:
-  - Grouping: Organize data by specified fields.
-  - Filtering: Apply custom conditions to extract data.
-  - Aggregation: Calculate metrics like **Sum**, **Average**, **Min**, and **Max**.
+    - Grouping: Organize data by specified fields.
+    - Filtering: Apply custom conditions to extract data.
+    - Aggregation: Calculate metrics like **Sum**, **Average**, **Min**, and **Max**.
 - **Advanced statistics**:
-  - Compute **Standard Deviation**, **Median**, **Mode**, and **Percentiles**.
-  - Correlation analysis between two numerical fields.
+    - Compute **Standard Deviation**, **Median**, **Mode**, and **Percentiles**.
+    - Correlation analysis between two numerical fields.
 - **Data normalization**:
-  - Scale numerical fields to a [0, 1] range.
+    - Scale numerical fields to a [0, 1] range.
 
 ---
 
@@ -40,12 +40,14 @@ making it ideal for preparing data for visualization, analysis, or reporting.
 
 1. **Define your dataset**: Use a **DataTable** for structured data storage.
 2. **Create a JSON schema**: Specify field attributes and controls:
-   - **IsGroupable**: Enables grouping.
-   - **IsAggregator**: Enables aggregation.
-   - **Filterable**: Allows filtering.
+    - **IsGroupable**: Enables grouping.
+    - **IsAggregator**: Enables aggregation.
+    - **Filterable**: Allows filtering.
 3. **Initialize the plugin**:
-4. 
+4.
+
 Example schema:
+
 ```json
 [
   {
@@ -79,25 +81,33 @@ datasetService.Setup(dataTable, jsonSchema);
 ## Usage Examples
 
 ### 1. Grouping Data
+
 Group data by a specific field, such as **Genre**:
+
 ```csharp
 var groupedData = datasetService.GroupBy("Genre");
 ```
 
 ### 2. Aggregating Data
+
 Compute the average value of a field:
+
 ```csharp
 var averageRatings = datasetService.Aggregate("Rating", "Average");
 ```
 
 ### 3. Filtering Data
+
 Filter rows based on a condition, such as movies released after 2000:
+
 ```csharp
 var recentMovies = datasetService.Filter("Year", year => Convert.ToInt32(year) > 2000);
 ```
 
 ### 4. Statistical Calculations
+
 Perform advanced analysis:
+
 - **Standard Deviation**:
   ```csharp
   var stdDev = datasetService.StandardDeviation("Rating");
@@ -116,7 +126,9 @@ Perform advanced analysis:
   ```
 
 ### 5. Normalizing Data
+
 Scale numerical values to a [0, 1] range:
+
 ```csharp
 var normalizedData = datasetService.Normalize("Rating");
 ```
